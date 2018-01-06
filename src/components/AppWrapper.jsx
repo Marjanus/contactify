@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class AppWrapper extends Component {
-  render() {
-    return (
-      <h1>APP</h1>
-    );
-  }
-}
+import Contacts from '../containers/Contacts';
+
+const AppWrapper = () => {
+  return (
+    <Contacts />
+  );
+};
+
+export default AppWrapper;
