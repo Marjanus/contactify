@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 
 const Contact = (props) => {
   const isVisible = props.active ?
-    <i className="fa fa-eye" aria-hidden="true"></i> :
-    <i className="fa fa-eye-slash" aria-hidden="true"></i>;
+    <i className="fa fa-eye" aria-hidden="true" /> :
+    <i className="fa fa-eye-slash" aria-hidden="true" />;
+  const editIcon = <i className="fa fa-pencil" aria-hidden="true" />;
+  const deleteIcon = <i className="fa fa-trash" aria-hidden="true" />;
 
   return (
     <tr>
@@ -13,6 +15,7 @@ const Contact = (props) => {
       <td>{props.city}</td>
       <td>{props.email}</td>
       <td>{props.phone}</td>
+      <td>{editIcon}{deleteIcon}</td>
     </tr>
   );
 };

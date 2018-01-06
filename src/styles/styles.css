@@ -1,13 +1,17 @@
 html,body {
     width: 100%;
     min-height: 100%;
-}
-
-html {
-    height: 100%;
+    margin: 0;
 }
 
 body {
     height: auto;
-    background: url("/src/utils/background.png") center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    height: auto;
+    background-image: url(/src/utils/background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }

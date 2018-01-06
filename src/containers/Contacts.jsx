@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 
 import Contact from '../components/Contact';
+import ActiveContact from '../components/ActiveContact';
 import contacts from '../utils/contacts.json';
 
 export default class Contacts extends Component {
-  static renderContacts() {
+  constructor(props) {
+    super(props);
+
+    this.renderContacts = this.renderContacts.bind(this)
+  }
+
+  renderContacts() {
     return (
       contacts.map((item) => {
         return (
@@ -25,14 +32,21 @@ export default class Contacts extends Component {
   render() {
     return (
       <section>
-        <table>
-          <thead>
-            <tr><th>Name</th><th>Surname</th><th>City</th><th>Email</th><th>Phone</th></tr>
-          </thead>
-          <tbody>
-            {Contacts.renderContacts()}
-          </tbody>
-        </table>
+        <aside>
+            <ActiveContact />
+        </aside>
+        <main>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th><th>Surname</th><th>City</th><th>Email</th><th>Phone</th><th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.renderContacts()}
+            </tbody>
+          </table>
+        </main>
       </section>
     );
   }
