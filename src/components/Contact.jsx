@@ -9,7 +9,7 @@ const Contact = (props) => {
   const deleteIcon = <i className="fa fa-trash" aria-hidden="true" />;
 
   return (
-    <tr>
+    <tr data-id={props.id} onClick={props.onSetActiveContact}>
       <td>{isVisible}{props.name}</td>
       <td>{props.surname}</td>
       <td>{props.city}</td>
@@ -21,12 +21,14 @@ const Contact = (props) => {
 };
 
 Contact.propTypes = {
+  id: PropTypes.number.isRequired,
   active: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   surname: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   phone: PropTypes.string.isRequired,
+  onSetActiveContact: PropTypes.func.isRequired,
 };
 
 export default Contact;
