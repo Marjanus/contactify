@@ -2,14 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ActiveContact = (props) => {
+
   return (
-    <div>
-      <img src="src/utils/userpic.jpg" alt="User" />
-      <p>Name: {props.name}</p>
-      <p>Surname: {props.surname}</p>
-      <p>City: {props.city}</p>
-      <p>Email: {props.email}</p>
-      <p>Phone: {props.phone}</p>
+    <div className="active-contact">
+      <div className="image-container">
+        <img src="src/utils/userpic.jpg" alt="User" />
+      </div>
+      <div className="data-container">
+        <p><span>Name:</span><span>{props.name}</span></p>
+        <p><span>Surname:</span><span>{props.surname}</span></p>
+        <p><span>City:</span><span>{props.city}</span></p>
+        <p><span>Email:</span><span><a href="mailto:">{props.email}</a></span></p>
+        <p><span>Phone:</span><span>{props.phone}</span></p>
+      </div>
     </div>
   );
 };

@@ -86,6 +86,7 @@ export default class Contacts extends Component {
         return (
           <Contact
             key={item.id}
+            activeRow={this.state.activeId}
             id={item.id}
             active={item.active}
             name={item.name}
@@ -108,32 +109,34 @@ export default class Contacts extends Component {
     return (
       <section>
         <FiltersBar onFilterContacts={this.handleFilterContacts} />
-        <aside>
-          {this.renderActiveContact()}
-        </aside>
-        <main>
-          <table>
-            <thead>
-              <tr>
-                <th onClick={this.handleSortContacts}>
-                  Name
-                  {this.state.sortedTable ?
-                  sortArrow :
-                  <i className="fa fa-sort" aria-hidden="true" />
-                }
-                </th>
-                <th>Surname</th>
-                <th>City</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>&nbsp;</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.renderVisibleContacts()}
-            </tbody>
-          </table>
-        </main>
+        <div className="top-container contacts-container">
+          <aside>
+            {this.renderActiveContact()}
+          </aside>
+          <main>
+            <table border="0" cellSpacing="0" cellPadding="0">
+              <thead>
+                <tr>
+                  <th onClick={this.handleSortContacts}>
+                    Name
+                    {this.state.sortedTable ?
+                    sortArrow :
+                    <i className="fa fa-sort" aria-hidden="true" />
+                  }
+                  </th>
+                  <th>Surname</th>
+                  <th>City</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.renderVisibleContacts()}
+              </tbody>
+            </table>
+          </main>
+        </div>
       </section>
     );
   }

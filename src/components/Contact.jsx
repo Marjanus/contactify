@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Contact = (props) => {
+  const rowClass = props.id === props.activeRow ? 'active-row' : 'row';
   const isVisible = props.active ?
     <i className="fa fa-eye" aria-hidden="true" /> :
     <i className="fa fa-eye-slash" aria-hidden="true" />;
@@ -9,7 +10,7 @@ const Contact = (props) => {
   const deleteIcon = <i className="fa fa-trash" aria-hidden="true" />;
 
   return (
-    <tr data-id={props.id} onClick={props.onSetActiveContact}>
+    <tr className={rowClass} data-id={props.id} onClick={props.onSetActiveContact}>
       <td>{isVisible}{props.name}</td>
       <td>{props.surname}</td>
       <td>{props.city}</td>
@@ -22,6 +23,7 @@ const Contact = (props) => {
 
 Contact.propTypes = {
   id: PropTypes.number.isRequired,
+  activeRow: PropTypes.number.isRequired,
   active: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   surname: PropTypes.string.isRequired,
