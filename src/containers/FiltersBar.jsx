@@ -8,7 +8,7 @@ export default class FiltersBar extends Component {
         <div className="top-container">
           <div>
             <form action="" method="get">
-              <input type="text" name="name" placeholder="name" />
+              <input type="text" name="name" placeholder="Name" />
               <select name="city">
                 <option value="">City</option>
                 <option value="london">London</option>
@@ -17,7 +17,8 @@ export default class FiltersBar extends Component {
                 <option value="singapore">Singapore</option>
                 <option value="hong kong">Hong Kong</option>
               </select>
-              <input type="checkbox" name="active" value="true" checked={false} />Show active
+              <input type="checkbox" name="active" defaultChecked />
+              <span>Show active</span>
               <button type="submit" onClick={this.props.onFilterContacts}>Filter</button>
             </form>
             <button type="button" className="add-contact">

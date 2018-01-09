@@ -6,7 +6,7 @@ import Footer from './Footer';
 
 const AppWrapper = () => {
   return (
-    <div>
+    <div className="app-wrapper">
       <Header />
       <Contacts />
       <Footer />

@@ -107,7 +107,7 @@ export default class Contacts extends Component {
       <i className="fa fa-arrow-up" aria-hidden="true" />;
 
     return (
-      <section>
+      <section className="content">
         <FiltersBar onFilterContacts={this.handleFilterContacts} />
         <div className="top-container contacts-container">
           <aside>

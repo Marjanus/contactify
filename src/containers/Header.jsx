@@ -37,8 +37,8 @@ export default class Header extends Component {
               <button type="submit"><i className="fa fa-search" aria-hidden="true" /></button>
             </form>
           </div>
-          <div id="profile-dropdown" onClick={this.toggleDropdown}>
-            <div className="profile-dropdown-switcher">
+          <div id="profile-dropdown">
+            <div className="profile-dropdown-switcher" onClick={this.toggleDropdown}>
               <i className="fa fa-user" aria-hidden="true" />
               <span>Jorah Mormont</span>
               <i className="fa fa-sort-desc" aria-hidden="true" />
