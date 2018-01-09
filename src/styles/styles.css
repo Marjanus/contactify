@@ -14,9 +14,12 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     font-weight: 400;
+}
+
+input, textarea, select, button {
+    font-family: 'Open Sans', sans-serif;
 }
 
 ul {
@@ -186,8 +189,34 @@ header .top-container > .header-switcher {
     padding: 20px 0 35px;
 }
 
+.filters-bar .top-container > div {
+    display: flex;
+    width: 100%;
+    padding-left: 16px;
+    justify-content: space-between;
+}
+
 .filters-bar select, .filters-bar input, .filters-bar button {
     border-radius: 18px;
+}
+
+button.add-contact {
+    border: none;
+    padding: 7px 0;
+    background-color: #217f7a;
+    color: #fff;s
+}
+
+button.add-contact i {
+    margin-left: 5px;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: #1a6662;
+    font-size: 14px;
+}
+
+button.add-contact span {
+    padding: 0 25px 0 20px;
 }
 
 .contacts-container {
