@@ -18396,7 +18396,7 @@ var Header = function (_Component) {
           _react2.default.createElement(
             'div',
             { className: 'header-logo' },
-            _react2.default.createElement('img', { src: '/src/utils/logo.jpg', alt: 'logo' })
+            _react2.default.createElement('img', { src: 'src/utils/logo.jpg', alt: 'logo' })
           ),
           _react2.default.createElement(
             'div',
