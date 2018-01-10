@@ -10,7 +10,7 @@ html {
 
 body {
     height: auto;
-    background-image: url('https://marjanus.github.io/contactify/src/utils/background.jng');
+    background-image: url('https://marjanus.github.io/contactify/src/utils/background.jpg');
     background-repeat: no-repeat;
     font-size: 15px;
     font-weight: 400;
@@ -22,8 +22,12 @@ body {
     flex-direction: column;
 }
 
-input, textarea, select, button {
+input select, button {
     font-family: 'Open Sans', sans-serif;
+}
+
+input:focus, select:focus,  button:focus {
+    outline: none;
 }
 
 input, select {
@@ -121,6 +125,9 @@ header .top-container > .header-switcher {
 }
 
 .header-search input {
+    position: relative;
+    bottom: 1px;
+    width: 13vw;
     max-width: 200px;
     border: 0;
     border-radius: 18px 0 0 18px;
@@ -405,7 +412,7 @@ section.content {
 }
 
 .contacts-container main th:last-child {
-    border-radius: 0 8px 0 0;
+    border-radius: 0 10px 0 0;
     background-color: #14c0dd;
 }
 
@@ -415,6 +422,14 @@ section.content {
 
 .contacts-container main tr.active-row {
     background-color: #e6f6f9;
+}
+
+.contacts-container main tr.active-row:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+.contacts-container main tr.active-row:last-child td:last-child {
+    border-bottom-right-radius: 10px;
 }
 
 
