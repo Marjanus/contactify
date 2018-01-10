@@ -22,7 +22,7 @@ export default class Header extends Component {
       <header>
         <div className="top-container">
           <div className="header-logo">
-            <img src="/src/utils/logo.jpg" alt="logo" />
+            <img src="src/utils/logo.jpg" alt="logo" />
           </div>
           <div className="header-switcher">
             <ul>
