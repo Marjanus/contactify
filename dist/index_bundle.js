@@ -18374,6 +18374,7 @@ var Header = function (_Component) {
     _this.state = { dropdownActivated: false };
 
     _this.toggleDropdown = _this.toggleDropdown.bind(_this);
+    _this.handlePreventSubmit = _this.handlePreventSubmit.bind(_this);
     return _this;
   }
 
@@ -18381,6 +18382,13 @@ var Header = function (_Component) {
     key: 'toggleDropdown',
     value: function toggleDropdown() {
       this.setState({ dropdownActivated: !this.state.dropdownActivated });
+    }
+  }, {
+    key: 'handlePreventSubmit',
+    value: function handlePreventSubmit(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+      }
     }
   }, {
     key: 'render',
@@ -18427,10 +18435,15 @@ var Header = function (_Component) {
             _react2.default.createElement(
               'form',
               { action: '', method: 'get' },
-              _react2.default.createElement('input', { type: 'text', placeholder: 'Search', name: 'search' }),
+              _react2.default.createElement('input', {
+                type: 'text',
+                placeholder: 'Search',
+                name: 'search',
+                onKeyPress: this.handlePreventSubmit
+              }),
               _react2.default.createElement(
                 'button',
-                { type: 'submit' },
+                { type: 'button' },
                 _react2.default.createElement('i', { className: 'fa fa-search', 'aria-hidden': 'true' })
               )
             )
@@ -18546,15 +18559,12 @@ var Contacts = function (_Component) {
       visibleContacts: [],
       activeId: 3,
       sortedTable: false,
-      sortDirection: 'asc',
-      filterName: '',
-      filterCity: '',
-      filterActive: true
+      sortDirection: 'asc'
     };
 
-    _this.handleSetActiveContact = _this.handleSetActiveContact.bind(_this);
     _this.handleSortContacts = _this.handleSortContacts.bind(_this);
     _this.handleFilterContacts = _this.handleFilterContacts.bind(_this);
+    _this.handleSetActiveContact = _this.handleSetActiveContact.bind(_this);
     _this.renderActiveContact = _this.renderActiveContact.bind(_this);
     _this.renderVisibleContacts = _this.renderVisibleContacts.bind(_this);
     return _this;
@@ -18564,12 +18574,6 @@ var Contacts = function (_Component) {
     key: 'componentWillMount',
     value: function componentWillMount() {
       this.setState({ allContacts: _contacts2.default, visibleContacts: _contacts2.default });
-    }
-  }, {
-    key: 'handleSetActiveContact',
-    value: function handleSetActiveContact(e) {
-      var newId = parseInt(e.target.closest('tr').dataset.id, 10);
-      this.setState({ activeId: newId });
     }
   }, {
     key: 'handleSortContacts',
@@ -18605,12 +18609,42 @@ var Contacts = function (_Component) {
     }
   }, {
     key: 'handleFilterContacts',
-    value: function handleFilterContacts(e) {
-      e.preventDefault();
-      var newVisibleContacts = this.state.allContacts.filter(function (item) {
-        return item.city === 'London';
+    value: function handleFilterContacts(name, city, isActive) {
+      var filterName = function filterName(item, queryName) {
+        if (queryName) {
+          return item.name.toLowerCase().indexOf(queryName.toLowerCase()) > -1;
+        }
+        return true;
+      };
+
+      var filterCity = function filterCity(item, cityQuery) {
+        if (cityQuery) {
+          return item.city === cityQuery;
+        }
+        return true;
+      };
+
+      var filterActivity = function filterActivity(item, activity) {
+        if (isActive) {
+          return item.active === activity;
+        }
+        return true;
+      };
+
+      var filteredContacts = this.state.allContacts.filter(function (item) {
+        return filterName(item, name) && filterCity(item, city) && filterActivity(item, isActive);
       });
-      this.setState({ visibleContacts: newVisibleContacts });
+
+      this.setState({
+        visibleContacts: filteredContacts,
+        sortedTable: false
+      });
+    }
+  }, {
+    key: 'handleSetActiveContact',
+    value: function handleSetActiveContact(e) {
+      var newId = parseInt(e.target.closest('tr').dataset.id, 10);
+      this.setState({ activeId: newId });
     }
   }, {
     key: 'renderActiveContact',
@@ -18760,13 +18794,57 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var FiltersBar = function (_Component) {
   _inherits(FiltersBar, _Component);
 
-  function FiltersBar() {
+  function FiltersBar(props) {
     _classCallCheck(this, FiltersBar);
 
-    return _possibleConstructorReturn(this, (FiltersBar.__proto__ || Object.getPrototypeOf(FiltersBar)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (FiltersBar.__proto__ || Object.getPrototypeOf(FiltersBar)).call(this, props));
+
+    _this.state = {
+      name: '',
+      city: 'all-cities',
+      onlyActive: true
+    };
+
+    _this.handleChangeName = _this.handleChangeName.bind(_this);
+    _this.handleChangeCity = _this.handleChangeCity.bind(_this);
+    _this.handleChangeOnlyActive = _this.handleChangeOnlyActive.bind(_this);
+    _this.handleFilter = _this.handleFilter.bind(_this);
+    _this.handlePreventSubmit = _this.handlePreventSubmit.bind(_this);
+    return _this;
   }
 
   _createClass(FiltersBar, [{
+    key: 'handleChangeName',
+    value: function handleChangeName(e) {
+      var trimmedName = e.target.value.trim();
+      this.setState({ name: trimmedName });
+    }
+  }, {
+    key: 'handleChangeCity',
+    value: function handleChangeCity(e) {
+      this.setState({ city: e.target.value });
+    }
+  }, {
+    key: 'handleChangeOnlyActive',
+    value: function handleChangeOnlyActive() {
+      this.setState({ onlyActive: !this.state.onlyActive });
+    }
+  }, {
+    key: 'handleFilter',
+    value: function handleFilter(e) {
+      e.preventDefault();
+      var nameQuery = this.state.name ? this.state.name : null;
+      var cityQuery = this.state.city === 'all-cities' ? null : this.state.city;
+      this.props.onFilterContacts(nameQuery, cityQuery, this.state.onlyActive);
+    }
+  }, {
+    key: 'handlePreventSubmit',
+    value: function handlePreventSubmit(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -18781,42 +18859,47 @@ var FiltersBar = function (_Component) {
             _react2.default.createElement(
               'form',
               { action: '', method: 'get' },
-              _react2.default.createElement('input', { type: 'text', name: 'name', placeholder: 'Name' }),
+              _react2.default.createElement('input', {
+                type: 'text',
+                name: 'name', placeholder: 'Name',
+                onChange: this.handleChangeName,
+                onKeyPress: this.handlePreventSubmit
+              }),
               _react2.default.createElement(
                 'select',
-                { name: 'city' },
+                { name: 'city', value: this.state.city, onChange: this.handleChangeCity },
                 _react2.default.createElement(
                   'option',
-                  { value: '' },
+                  { value: 'all-cities' },
                   'City'
                 ),
                 _react2.default.createElement(
                   'option',
-                  { value: 'london' },
+                  { value: 'London' },
                   'London'
                 ),
                 _react2.default.createElement(
                   'option',
-                  { value: 'sydney' },
+                  { value: 'Sydney' },
                   'Sydney'
                 ),
                 _react2.default.createElement(
                   'option',
-                  { value: 'los ang=les' },
+                  { value: 'Los Angeles' },
                   'Los Angeles'
                 ),
                 _react2.default.createElement(
                   'option',
-                  { value: 'singapore' },
+                  { value: 'Singapore' },
                   'Singapore'
                 ),
                 _react2.default.createElement(
                   'option',
-                  { value: 'hong kong' },
+                  { value: 'Hong Kong' },
                   'Hong Kong'
                 )
               ),
-              _react2.default.createElement('input', { type: 'checkbox', name: 'active', defaultChecked: true }),
+              _react2.default.createElement('input', { type: 'checkbox', defaultChecked: true, onClick: this.handleChangeOnlyActive }),
               _react2.default.createElement(
                 'span',
                 null,
@@ -18824,7 +18907,7 @@ var FiltersBar = function (_Component) {
               ),
               _react2.default.createElement(
                 'button',
-                { type: 'submit', onClick: this.props.onFilterContacts },
+                { type: 'submit', onClick: this.handleFilter },
                 'Filter'
               )
             ),
@@ -18848,7 +18931,7 @@ var FiltersBar = function (_Component) {
 }(_react.Component);
 
 exports.default = FiltersBar;
-;
+
 
 FiltersBar.propTypes = {
   onFilterContacts: _propTypes2.default.func.isRequired

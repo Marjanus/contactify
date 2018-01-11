@@ -7,10 +7,15 @@ export default class Header extends Component {
     this.state = { dropdownActivated: false };
 
     this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.handlePreventSubmit = this.handlePreventSubmit.bind(this);
   }
 
   toggleDropdown() {
     this.setState({ dropdownActivated: !this.state.dropdownActivated });
+  }
+
+  handlePreventSubmit(e) {
+    if (e.key === 'Enter') { e.preventDefault(); }
   }
 
   render() {
@@ -33,8 +38,13 @@ export default class Header extends Component {
           </div>
           <div className="header-search">
             <form action="" method="get">
-              <input type="text" placeholder="Search" name="search" />
-              <button type="submit"><i className="fa fa-search" aria-hidden="true" /></button>
+              <input
+                type="text"
+                placeholder="Search"
+                name="search"
+                onKeyPress={this.handlePreventSubmit}
+              />
+              <button type="button"><i className="fa fa-search" aria-hidden="true" /></button>
             </form>
           </div>
           <div id="profile-dropdown">

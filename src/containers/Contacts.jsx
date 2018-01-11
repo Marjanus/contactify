@@ -16,25 +16,17 @@ export default class Contacts extends Component {
       activeId: 3,
       sortedTable: false,
       sortDirection: 'asc',
-      filterName: '',
-      filterCity: '',
-      filterActive: true,
     };
 
-    this.handleSetActiveContact = this.handleSetActiveContact.bind(this);
     this.handleSortContacts = this.handleSortContacts.bind(this);
     this.handleFilterContacts = this.handleFilterContacts.bind(this);
+    this.handleSetActiveContact = this.handleSetActiveContact.bind(this);
     this.renderActiveContact = this.renderActiveContact.bind(this);
     this.renderVisibleContacts = this.renderVisibleContacts.bind(this);
   }
 
   componentWillMount() {
     this.setState({ allContacts: mockContactsData, visibleContacts: mockContactsData });
-  }
-
-  handleSetActiveContact(e) {
-    const newId = parseInt(e.target.closest('tr').dataset.id, 10);
-    this.setState({ activeId: newId });
   }
 
   handleSortContacts() {
@@ -58,10 +50,35 @@ export default class Contacts extends Component {
     this.setState({ visibleContacts: sortedContacts });
   }
 
-  handleFilterContacts(e) {
-    e.preventDefault();
-    const newVisibleContacts = this.state.allContacts.filter(item => item.city === 'London');
-    this.setState({ visibleContacts: newVisibleContacts });
+  handleFilterContacts(name, city, isActive) {
+    const filterName = (item, queryName) => {
+      if (queryName) { return item.name.toLowerCase().indexOf(queryName.toLowerCase()) > -1; }
+      return true;
+    };
+
+    const filterCity = (item, cityQuery) => {
+      if (cityQuery) { return item.city === cityQuery; }
+      return true;
+    };
+
+    const filterActivity = (item, activity) => {
+      if (isActive) { return item.active === activity; }
+      return true;
+    };
+
+    const filteredContacts = this.state.allContacts.filter((item) => {
+      return filterName(item, name) && filterCity(item, city) && filterActivity(item, isActive);
+    });
+
+    this.setState({
+      visibleContacts: filteredContacts,
+      sortedTable: false,
+    });
+  }
+
+  handleSetActiveContact(e) {
+    const newId = parseInt(e.target.closest('tr').dataset.id, 10);
+    this.setState({ activeId: newId });
   }
 
   renderActiveContact() {
