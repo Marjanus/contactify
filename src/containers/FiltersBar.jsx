@@ -15,7 +15,6 @@ export default class FiltersBar extends Component {
     this.handleChangeCity = this.handleChangeCity.bind(this);
     this.handleChangeOnlyActive = this.handleChangeOnlyActive.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
-    this.handlePreventSubmit = this.handlePreventSubmit.bind(this);
   }
 
   handleChangeName(e) {
@@ -38,9 +37,6 @@ export default class FiltersBar extends Component {
     this.props.onFilterContacts(nameQuery, cityQuery, this.state.onlyActive);
   }
 
-  handlePreventSubmit(e) {
-    if (e.key === 'Enter') { e.preventDefault(); }
-  }
 
   render() {
     return (
@@ -52,7 +48,6 @@ export default class FiltersBar extends Component {
                 type="text"
                 name="name" placeholder="Name"
                 onChange={this.handleChangeName}
-                onKeyPress={this.handlePreventSubmit}
               />
               <select name="city" value={this.state.city} onChange={this.handleChangeCity}>
                 <option value="all-cities">City</option>

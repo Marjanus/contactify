@@ -45,6 +45,10 @@ ul {
     list-style-type: none;
 }
 
+th, p, li {
+    cursor: default;
+}
+
 a {
     text-decoration: underline;
 }
@@ -131,6 +135,7 @@ header .top-container > .header-switcher {
     max-width: 200px;
     border: 0;
     border-radius: 18px 0 0 18px;
+    cursor: default;
 }
 
 .header-search button {
@@ -169,14 +174,23 @@ header .top-container > .header-switcher {
     cursor: pointer;
 }
 
-.profile-dropdown-switcher .fa-user {
-    padding:0 10px;
+.profile-dropdown-switcher:hover {
+    opacity: .9;
 }
 
-.profile-dropdown-switcher .fa-sort-desc {
+.profile-dropdown-switcher i.fa-user {
+    padding: 0 10px;
+}
+
+.profile-dropdown-switcher i.fa:not(.fa-user) {
     position: relative;
     bottom: 4px;
     left: 20px;
+}
+
+.profile-dropdown-switcher i.fa.fa-sort-asc {
+    top: 2px;
+    bottom: 0;
 }
 
 .profile-dropdown-list {
@@ -195,6 +209,7 @@ header .top-container > .header-switcher {
 
 .profile-dropdown-list li {
     padding: 9px 0;
+    cursor: default;
 }
 
 .profile-dropdown-list li:not(:first-child){
@@ -230,6 +245,7 @@ header .top-container > .header-switcher {
 
 .filters-bar select, .filters-bar input, .filters-bar button {
     border-radius: 18px;
+    cursor: pointer;
 }
 
 .filters-bar input[type="text"] {
@@ -262,16 +278,25 @@ header .top-container > .header-switcher {
     color: #fff;
     font-size: 16px;
     line-height: 19px;
+    cursor: default;
 }
 
 .filters-bar form button[type="submit"] {
     padding: 6px 30px;
     border: 2px solid #5d9498;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(255, 255, 255, 0);
     color: #fff;
     text-transform: uppercase;
 }
 
+.filters-bar input[type="text"]:hover,
+.filters-bar select:hover {
+    opacity: .8;
+}
+
+.filters-bar form button[type="submit"]:hover {
+    background-color: rgba(234, 234, 232, .8);
+}
 
 button.add-contact {
     position: absolute;
@@ -279,7 +304,7 @@ button.add-contact {
     border: none;
     padding: 7px 0;
     background-color: #217f7a;
-    color: #fff;
+    cursor: default;
 }
 
 button.add-contact i {
@@ -376,6 +401,11 @@ section.content {
 .contacts-container main th:first-child {
     border-radius: 8px 0 0 0;
     background-color: #0086a5;
+    cursor: pointer;
+}
+
+.contacts-container main th:first-child:hover {
+    opacity: .8;
 }
 
 .contacts-container main th:first-child i {
@@ -420,15 +450,18 @@ section.content {
     cursor: pointer;
 }
 
+.contacts-container main tr:hover,
 .contacts-container main tr.active-row {
     background-color: #e6f6f9;
 }
 
-.contacts-container main tr.active-row:last-child td:first-child {
+.contacts-container main tr.active-row:last-child td:first-child,
+.contacts-container main tr:last-child:hover td:first-child {
     border-bottom-left-radius: 10px;
 }
 
-.contacts-container main tr.active-row:last-child td:last-child {
+.contacts-container main tr.active-row:last-child td:last-child,
+.contacts-container main tr:hover td:last-child {
     border-bottom-right-radius: 10px;
 }
 

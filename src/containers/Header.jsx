@@ -6,11 +6,11 @@ export default class Header extends Component {
 
     this.state = { dropdownActivated: false };
 
-    this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.handleToggleDropdown = this.handleToggleDropdown.bind(this);
     this.handlePreventSubmit = this.handlePreventSubmit.bind(this);
   }
 
-  toggleDropdown() {
+  handleToggleDropdown() {
     this.setState({ dropdownActivated: !this.state.dropdownActivated });
   }
 
@@ -22,6 +22,10 @@ export default class Header extends Component {
     const dropDownClass = this.state.dropdownActivated ?
       'profile-dropdown-list visible' :
       'profile-dropdown-list hidden';
+
+    const arrowIcon = this.state.dropdownActivated ?
+      <i className="fa fa-sort-asc" aria-hidden="true" /> :
+      <i className="fa fa-sort-desc" aria-hidden="true" />;
 
     return (
       <header>
@@ -48,10 +52,10 @@ export default class Header extends Component {
             </form>
           </div>
           <div id="profile-dropdown">
-            <div className="profile-dropdown-switcher" onClick={this.toggleDropdown}>
+            <div className="profile-dropdown-switcher" onClick={this.handleToggleDropdown}>
               <i className="fa fa-user" aria-hidden="true" />
               <span>Jorah Mormont</span>
-              <i className="fa fa-sort-desc" aria-hidden="true" />
+              {arrowIcon}
             </div>
             <div className={dropDownClass}>
               <ul>

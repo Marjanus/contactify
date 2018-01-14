@@ -125,7 +125,9 @@ export default class Contacts extends Component {
 
     return (
       <section className="content">
-        <FiltersBar onFilterContacts={this.handleFilterContacts} />
+        <FiltersBar
+          onFilterContacts={this.handleFilterContacts}
+        />
         <div className="top-container contacts-container">
           <aside>
             {this.renderActiveContact()}
@@ -145,7 +147,7 @@ export default class Contacts extends Component {
                   <th>City</th>
                   <th>Email</th>
                   <th>Phone</th>
-                  <th>&nbsp;</th>
+                  <th>&nbsp;&nbsp;</th>
                 </tr>
               </thead>
               <tbody>
