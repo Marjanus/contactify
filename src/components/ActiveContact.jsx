@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ActiveContact = (props) => {
-
   return (
     <div className="active-contact">
       <div className="image-container">
@@ -12,7 +11,7 @@ const ActiveContact = (props) => {
         <p><span>Name:</span><span>{props.name}</span></p>
         <p><span>Surname:</span><span>{props.surname}</span></p>
         <p><span>City:</span><span>{props.city}</span></p>
-        <p><span>Email:</span><span><a href="mailto:">{props.email}</a></span></p>
+        <p><span>Email:</span><span><a href="mailto:#">{props.email}</a></span></p>
         <p><span>Phone:</span><span>{props.phone}</span></p>
       </div>
     </div>

@@ -18316,9 +18316,9 @@ var _Header = __webpack_require__(29);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _Contacts = __webpack_require__(30);
+var _Content = __webpack_require__(30);
 
-var _Contacts2 = _interopRequireDefault(_Contacts);
+var _Content2 = _interopRequireDefault(_Content);
 
 var _Footer = __webpack_require__(37);
 
@@ -18331,7 +18331,7 @@ var AppWrapper = function AppWrapper() {
     'div',
     { className: 'app-wrapper' },
     _react2.default.createElement(_Header2.default, null),
-    _react2.default.createElement(_Contacts2.default, null),
+    _react2.default.createElement(_Content2.default, null),
     _react2.default.createElement(_Footer2.default, null)
   );
 };
@@ -18366,6 +18366,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Header = function (_Component) {
   _inherits(Header, _Component);
 
+  _createClass(Header, null, [{
+    key: 'handlePreventSubmit',
+    value: function handlePreventSubmit(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+      }
+    }
+  }]);
+
   function Header(props) {
     _classCallCheck(this, Header);
 
@@ -18373,27 +18382,21 @@ var Header = function (_Component) {
 
     _this.state = { dropdownActivated: false };
 
-    _this.toggleDropdown = _this.toggleDropdown.bind(_this);
-    _this.handlePreventSubmit = _this.handlePreventSubmit.bind(_this);
+    _this.handleToggleDropdown = _this.handleToggleDropdown.bind(_this);
     return _this;
   }
 
   _createClass(Header, [{
-    key: 'toggleDropdown',
-    value: function toggleDropdown() {
+    key: 'handleToggleDropdown',
+    value: function handleToggleDropdown() {
       this.setState({ dropdownActivated: !this.state.dropdownActivated });
-    }
-  }, {
-    key: 'handlePreventSubmit',
-    value: function handlePreventSubmit(e) {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-      }
     }
   }, {
     key: 'render',
     value: function render() {
       var dropDownClass = this.state.dropdownActivated ? 'profile-dropdown-list visible' : 'profile-dropdown-list hidden';
+
+      var arrowIcon = this.state.dropdownActivated ? _react2.default.createElement('i', { className: 'fa fa-sort-asc', 'aria-hidden': 'true' }) : _react2.default.createElement('i', { className: 'fa fa-sort-desc', 'aria-hidden': 'true' });
 
       return _react2.default.createElement(
         'header',
@@ -18438,8 +18441,7 @@ var Header = function (_Component) {
               _react2.default.createElement('input', {
                 type: 'text',
                 placeholder: 'Search',
-                name: 'search',
-                onKeyPress: this.handlePreventSubmit
+                onKeyPress: Header.handlePreventSubmit
               }),
               _react2.default.createElement(
                 'button',
@@ -18453,14 +18455,14 @@ var Header = function (_Component) {
             { id: 'profile-dropdown' },
             _react2.default.createElement(
               'div',
-              { className: 'profile-dropdown-switcher', onClick: this.toggleDropdown },
+              { className: 'profile-dropdown-switcher', onClick: this.handleToggleDropdown },
               _react2.default.createElement('i', { className: 'fa fa-user', 'aria-hidden': 'true' }),
               _react2.default.createElement(
                 'span',
                 null,
                 'Jorah Mormont'
               ),
-              _react2.default.createElement('i', { className: 'fa fa-sort-desc', 'aria-hidden': 'true' })
+              arrowIcon
             ),
             _react2.default.createElement(
               'div',
@@ -18691,7 +18693,9 @@ var Contacts = function (_Component) {
       return _react2.default.createElement(
         'section',
         { className: 'content' },
-        _react2.default.createElement(_FiltersBar2.default, { onFilterContacts: this.handleFilterContacts }),
+        _react2.default.createElement(_FiltersBar2.default, {
+          onFilterContacts: this.handleFilterContacts
+        }),
         _react2.default.createElement(
           'div',
           { className: 'top-container contacts-container' },
@@ -18715,7 +18719,7 @@ var Contacts = function (_Component) {
                   _react2.default.createElement(
                     'th',
                     { onClick: this.handleSortContacts },
-                    'Name',
+                    'Name ',
                     this.state.sortedTable ? sortArrow : _react2.default.createElement('i', { className: 'fa fa-sort', 'aria-hidden': 'true' })
                   ),
                   _react2.default.createElement(
@@ -18741,7 +18745,7 @@ var Contacts = function (_Component) {
                   _react2.default.createElement(
                     'th',
                     null,
-                    '\xA0'
+                    '\xA0\xA0'
                   )
                 )
               ),
@@ -18809,7 +18813,6 @@ var FiltersBar = function (_Component) {
     _this.handleChangeCity = _this.handleChangeCity.bind(_this);
     _this.handleChangeOnlyActive = _this.handleChangeOnlyActive.bind(_this);
     _this.handleFilter = _this.handleFilter.bind(_this);
-    _this.handlePreventSubmit = _this.handlePreventSubmit.bind(_this);
     return _this;
   }
 
@@ -18838,13 +18841,6 @@ var FiltersBar = function (_Component) {
       this.props.onFilterContacts(nameQuery, cityQuery, this.state.onlyActive);
     }
   }, {
-    key: 'handlePreventSubmit',
-    value: function handlePreventSubmit(e) {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-      }
-    }
-  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -18862,8 +18858,7 @@ var FiltersBar = function (_Component) {
               _react2.default.createElement('input', {
                 type: 'text',
                 name: 'name', placeholder: 'Name',
-                onChange: this.handleChangeName,
-                onKeyPress: this.handlePreventSubmit
+                onChange: this.handleChangeName
               }),
               _react2.default.createElement(
                 'select',
@@ -19653,7 +19648,6 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ActiveContact = function ActiveContact(props) {
-
   return _react2.default.createElement(
     'div',
     { className: 'active-contact' },
@@ -19720,7 +19714,7 @@ var ActiveContact = function ActiveContact(props) {
           null,
           _react2.default.createElement(
             'a',
-            { href: 'mailto:' },
+            { href: 'mailto:#' },
             props.email
           )
         )
@@ -19831,7 +19825,7 @@ var Footer = function Footer() {
         ),
         _react2.default.createElement(
           "ul",
-          null,
+          { className: "contacts" },
           _react2.default.createElement(
             "li",
             null,
@@ -19881,14 +19875,14 @@ var Footer = function Footer() {
             _react2.default.createElement("i", { className: "fa fa-cloud-upload", "aria-hidden": "true" }),
             _react2.default.createElement(
               "p",
-              { className: "footer-paragraph" },
+              null,
               "Last synced:",
               _react2.default.createElement("br", null),
               "2015-06-02 14:33:10"
             ),
             _react2.default.createElement(
               "p",
-              { className: "footer-paragraph sync-paragraph" },
+              { className: "sync-paragraph" },
               _react2.default.createElement("i", { className: "fa fa-refresh", "aria-hidden": "true" }),
               _react2.default.createElement(
                 "a",
@@ -19904,10 +19898,10 @@ var Footer = function Footer() {
           _react2.default.createElement("i", { className: "fa fa-stethoscope", "aria-hidden": "true" }),
           _react2.default.createElement(
             "p",
-            { className: "footer-paragraph" },
+            null,
             "Help desk and Resolution center available: ",
             _react2.default.createElement("br", null),
-            " I-IV: 8:00-18:00, V:8:00-16:45"
+            " I-IV: 8:00-18:00, V: 8:00-16:45"
           )
         )
       ),

@@ -10,16 +10,14 @@ html {
 
 body {
     height: auto;
-    background-image: url('https://marjanus.github.io/contactify/src/utils/background.jpg');
-    background-repeat: no-repeat;
+    background: url('https://marjanus.github.io/contactify/src/utils/background.jpg' ) no-repeat;
+    font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     font-weight: 400;
 }
 
-.app-wrapper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+.header-switcher, .filters-bar button, th {
+    font-weight: 600;
 }
 
 input select, button {
@@ -57,16 +55,18 @@ a {
     display: none;
 }
 
+.app-wrapper {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
 .top-container {
     display: flex;
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 16px;
     box-sizing: border-box;
-}
-
-.header-switcher, .filters-bar button, th {
-    font-weight: 600;
 }
 
 header {
@@ -86,14 +86,6 @@ header .top-container > div {
 .header-logo {
     position: relative;
     bottom: 5px;
-}
-
-.header-logo h1 {
-    margin: 0;
-}
-
-.header-logo i.fa-user {
-    font-size: 12px;
 }
 
 header .top-container > .header-switcher {
@@ -142,7 +134,7 @@ header .top-container > .header-switcher {
     width: 34px;
     height: 36px;
     border: 0;
-    border-radius:  0 18px 18px 0;
+    border-radius: 0 18px 18px 0;
     background-color: #d8d8ce;
     color: #4f4d43;
     font-size: 16px;
@@ -235,10 +227,6 @@ header .top-container > .header-switcher {
     justify-content: space-between;
 }
 
-.filters-bar form {
-    width: 100%;
-}
-
 .filters-bar form input[type="checkbox"], .filters-bar form span, .filters-bar form button {
     margin-left: 20px;
 }
@@ -246,6 +234,17 @@ header .top-container > .header-switcher {
 .filters-bar select, .filters-bar input, .filters-bar button {
     border-radius: 18px;
     cursor: pointer;
+}
+
+.filters-bar form input[type="checkbox"], .filters-bar form span {
+    position: relative;
+    bottom: 3px;
+    vertical-align: middle;
+}
+
+
+.filters-bar form {
+    width: 100%;
 }
 
 .filters-bar input[type="text"] {
@@ -257,21 +256,14 @@ header .top-container > .header-switcher {
 }
 
 .filters-bar select option {
-    background-color: #fff;
     vertical-align: top;
-}
-
-.filters-bar form > input[type="checkbox"],filters-bar form > span {
-    position: relative;
-    bottom: 3px;
-    vertical-align: middle;
 }
 
 .filters-bar input[type="checkbox"] {
     width: 16px;
     height: 16px;
-    outline: 3px solid #2a4344;
     color: #217f7a;
+    outline: 3px solid #2a4344;
 }
 
 .filters-bar span  {
@@ -329,7 +321,7 @@ section.content {
     margin-bottom: 45px;
 }
 
-.contacts-container aside {
+aside {
     flex: 1;
 }
 
@@ -362,6 +354,7 @@ section.content {
 }
 
 .active-contact .data-container span a {
+    padding-right: 5px;
     color: #0094BC;
 }
 
@@ -380,97 +373,110 @@ section.content {
     word-break: break-all;
 }
 
-.contacts-container main {
+main {
     flex: 4;
     padding-left: 16px;
 }
 
-.contacts-container main table {
+main table {
     width: 100%;
     border-radius: 10px;
     background-color: #fff;
 }
 
-.contacts-container main th {
+main th {
     padding: 16px 0;
     color: #fff;
     font-size: 16px;
     line-height: 19px;
 }
 
-.contacts-container main th:first-child {
+main th:first-child {
     border-radius: 8px 0 0 0;
     background-color: #0086a5;
     cursor: pointer;
 }
 
-.contacts-container main th:first-child:hover {
+main th:first-child:hover {
     opacity: .8;
 }
 
-.contacts-container main th:first-child i {
+main th:first-child i {
     position: relative;
-    padding-right: 10px;
-    font-size: 14px;
     top: 5px;
     float: right;
+    padding-right: 10px;
+    font-size: 14px;
     font-weight: 400;
 }
 
-.contacts-container main th:nth-of-type(2) {
+main th:nth-of-type(2) {
     padding-left: 25px;
     background-color: #0390ae;
     text-align: left;
 }
 
-.contacts-container main th:nth-of-type(3) {
+main th:nth-of-type(3) {
     padding-left: 15px;
     background-color: #0799b8;
     text-align: left;
 }
 
-.contacts-container main th:nth-of-type(4){
+main th:nth-of-type(4){
     padding-left: 15px;
     background-color: #0dadca;
     text-align: left;
 }
 
-.contacts-container main th:nth-of-type(5){
+main th:nth-of-type(5){
     padding-right: 20px;
     background-color: #11b6d4;
     text-align: right;
 }
 
-.contacts-container main th:last-child {
+main th:last-child {
     border-radius: 0 10px 0 0;
     background-color: #14c0dd;
 }
 
-.contacts-container main tr {
+main tr {
     cursor: pointer;
 }
 
-.contacts-container main tr:hover,
-.contacts-container main tr.active-row {
+main tr:hover, main tr.active-row {
     background-color: #e6f6f9;
 }
 
-.contacts-container main tr.active-row:last-child td:first-child,
-.contacts-container main tr:last-child:hover td:first-child {
+main tr.active-row:last-child td:first-child, main tr:last-child:hover td:first-child {
     border-bottom-left-radius: 10px;
 }
 
-.contacts-container main tr.active-row:last-child td:last-child,
-.contacts-container main tr:hover td:last-child {
+main tr.active-row:last-child td:last-child, main tr:hover td:last-child {
     border-bottom-right-radius: 10px;
 }
 
-
-.contacts-container main td {
+main td {
     padding: 10px 0;
     color: #4f4d43;
     font-size: 16px;
     line-height: 24px;
+}
+
+main td:nth-of-type(2) {
+    padding-left: 25px;
+}
+
+main td:nth-of-type(3), main td:nth-of-type(4) {
+    padding-left: 15px;
+}
+
+main td:nth-of-type(5) {
+    padding-right: 20px;
+    text-align: right;
+}
+
+main tr:not(:last-child) td {
+    border-bottom: 1px solid #eaeae8;
 }
 
 .contacts-container main td i {
@@ -479,35 +485,18 @@ section.content {
     font-size: 14px;
 }
 
-.contacts-container main td:first-child i {
+main td:first-child i {
     padding: 0 15px;
 }
 
-.contacts-container main td:nth-of-type(2) {
-    padding-left: 25px;
-}
-
-.contacts-container main td:nth-of-type(3), .contacts-container main td:nth-of-type(4) {
-    padding-left: 15px;
-}
-
-.contacts-container main td:nth-of-type(5) {
-    padding-right: 20px;
-    text-align: right;
-}
-
-.contacts-container main tr:not(:last-child) td {
-    border-bottom: 1px solid #eaeae8;
-}
-
-.contacts-container main tr td:last-child i {
+main tr td:last-child i {
     margin-left: 10px;
     padding: 5px;
     border-radius: 8px;
     font-size: 14px;
 }
 
-.contacts-container main tr.active-row td:last-child i {
+main tr.active-row td:last-child i {
     background-color: #11b6d4;
     color: #fff;
 }
@@ -518,22 +507,18 @@ footer {
     color: #fff;
 }
 
-.footer-paragraph {
-    display: inline-block;
-}
-
-.sync-paragraph {
-    position: relative;
-    float: right;
-    clear: right;
-    right: 20px;
-    top: 10px;
-}
-
 footer .top-container > div {
     padding-left: 16px;
     font-size: 15px;
     line-height: 15px;
+}
+
+footer div > p {
+    display: inline-block;
+}
+
+footer  a {
+    color: #fff;
 }
 
 footer .top-container > div:first-child {
@@ -544,11 +529,11 @@ footer .top-container > div:first-child, footer .top-container > div:nth-of-type
     flex: 2;
 }
 
-footer .top-container > div:first-child  ul:nth-of-type(2) li {
+footer ul.contacts li {
     display: inline-block;
 }
 
-footer .top-container > div:first-child  ul:nth-of-type(2) li:not(:first-child) {
+footer ul.contacts li:not(:first-child) {
     margin-left: 10px;
 }
 
@@ -559,17 +544,25 @@ footer .top-container > div:nth-of-type(2) {
     line-height: 21px;
 }
 
+footer .fa-cloud-upload, footer .fa-stethoscope {
+    font-size: 36px;
+    padding: 0 20px
+}
+
 footer .top-container > div:nth-of-type(2) > div:first-child {
     border-bottom: 1px solid #102d40;
 }
 
-footer .top-container > div:nth-of-type(2) > div:last-child {
-    border-top: 1px solid #284457;
+footer .sync-paragraph {
+    position: relative;
+    float: right;
+    clear: right;
+    right: 20px;
+    top: 10px;
 }
 
-footer .fa-cloud-upload, footer .fa-stethoscope {
-    font-size: 36px;
-    padding: 0 20px
+footer .top-container > div:nth-of-type(2) > div:last-child {
+    border-top: 1px solid #284457;
 }
 
 footer .fa-refresh {
@@ -579,10 +572,6 @@ footer .fa-refresh {
 footer .top-container > div:last-child {
     line-height: 15px;
     flex: 1;
-}
-
-footer .top-container > div a {
-    color: #fff;
 }
 
 footer .top-container > div:last-child a {

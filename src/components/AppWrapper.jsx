@@ -1,14 +1,14 @@
 import React from 'react';
 
 import Header from '../containers/Header';
-import Contacts from '../containers/Contacts';
+import Content from '../containers/Content';
 import Footer from './Footer';
 
 const AppWrapper = () => {
   return (
     <div className="app-wrapper">
       <Header />
-      <Contacts />
+      <Content />
       <Footer />
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import FiltersBar from '../containers/FiltersBar';
+import FiltersBar from './FiltersBar';
 import Contact from '../components/Contact';
 import ActiveContact from '../components/ActiveContact';
 
@@ -137,8 +137,7 @@ export default class Contacts extends Component {
               <thead>
                 <tr>
                   <th onClick={this.handleSortContacts}>
-                    Name
-                    {this.state.sortedTable ?
+                    Name {this.state.sortedTable ?
                     sortArrow :
                     <i className="fa fa-sort" aria-hidden="true" />
                   }

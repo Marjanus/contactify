@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 
 export default class Header extends Component {
+  static handlePreventSubmit(e) {
+    if (e.key === 'Enter') { e.preventDefault(); }
+  }
+
   constructor(props) {
     super(props);
 
     this.state = { dropdownActivated: false };
 
     this.handleToggleDropdown = this.handleToggleDropdown.bind(this);
-    this.handlePreventSubmit = this.handlePreventSubmit.bind(this);
   }
 
   handleToggleDropdown() {
     this.setState({ dropdownActivated: !this.state.dropdownActivated });
-  }
-
-  handlePreventSubmit(e) {
-    if (e.key === 'Enter') { e.preventDefault(); }
   }
 
   render() {
@@ -45,8 +44,7 @@ export default class Header extends Component {
               <input
                 type="text"
                 placeholder="Search"
-                name="search"
-                onKeyPress={this.handlePreventSubmit}
+                onKeyPress={Header.handlePreventSubmit}
               />
               <button type="button"><i className="fa fa-search" aria-hidden="true" /></button>
             </form>

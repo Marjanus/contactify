@@ -10,7 +10,7 @@ const Footer = () => {
             <li><p><a href="#">Contacts</a></p></li>
             <li><p><a href="#">Notifications</a></p></li>
           </ul>
-          <ul>
+          <ul className="contacts">
             <li><p>&#9400; 2015 Contactify</p></li>
             <li><p><a href="#">About</a></p></li>
             <li><p><a href="#">Privacy</a></p></li>
@@ -20,8 +20,8 @@ const Footer = () => {
           <div>
             <div>
               <i className="fa fa-cloud-upload" aria-hidden="true" />
-              <p className="footer-paragraph">Last synced:<br />2015-06-02 14:33:10</p>
-              <p className="footer-paragraph sync-paragraph">
+              <p>Last synced:<br />2015-06-02 14:33:10</p>
+              <p className="sync-paragraph">
                 <i className="fa fa-refresh" aria-hidden="true" />
                 <a href="#">Force sync</a>
               </p>
@@ -29,9 +29,7 @@ const Footer = () => {
           </div>
           <div>
             <i className="fa fa-stethoscope" aria-hidden="true" />
-            <p className="footer-paragraph">
-              Help desk and Resolution center available: <br /> I-IV: 8:00-18:00, V:8:00-16:45
-            </p>
+            <p>Help desk and Resolution center available: <br /> I-IV: 8:00-18:00, V: 8:00-16:45</p>
           </div>
         </div>
         <div>
