@@ -18857,7 +18857,8 @@ var FiltersBar = function (_Component) {
               { action: '', method: 'get' },
               _react2.default.createElement('input', {
                 type: 'text',
-                name: 'name', placeholder: 'Name',
+                name: 'name',
+                placeholder: 'Name',
                 onChange: this.handleChangeName
               }),
               _react2.default.createElement(

@@ -46,7 +46,8 @@ export default class FiltersBar extends Component {
             <form action="" method="get">
               <input
                 type="text"
-                name="name" placeholder="Name"
+                name="name"
+                placeholder="Name"
                 onChange={this.handleChangeName}
               />
               <select name="city" value={this.state.city} onChange={this.handleChangeCity}>
